@@ -8,6 +8,7 @@ const projects = require('./lib/projects')
 const domainToSuffix = {
   usdo: 'usdo',
   vndo: 'vndo',
+  br: 'vndo',
   'do': 'do',
   usa: 'usdo',
   us: 'usdo',
@@ -39,7 +40,7 @@ const countryCodes = new Set([
  * @param {object} [opts] - Config options
  * @param {string} [opts.username=process.env.GETSMSCODE_USERNAME] - Username for getsmscode auth
  * @param {string} [opts.token=process.env.GETSMSCODE_TOKEN] - Token for getsmscode auth
- * @param {string} [opts.domain='china'] - Domain for this client to use (china/usa/asia)
+ * @param {string} [opts.domain='china'] - Domain for this client to use (china/usa/asia/br)
  */
 class GetSMSCodeClient {
   constructor (opts = { }) {
@@ -93,8 +94,9 @@ class GetSMSCodeClient {
    * You must specify either `opts.service` or `opts.pid`.
    *
    * @param {object} opts - Config options
-   * @param {string} [opts.service] - Name of service to blacklist number
-   * @param {string} [opts.pid] - Project ID of service to blacklist number
+   * @param {string} [opts.service] - Name of service to get number
+   * @param {string} [opts.pid] - Project ID of service to get number
+   * @param {string} [opts.mobile] - if need to use number again
    * @param {string} [opts.cocode] - Country code (required if using asian domain)
 
    * @return {Promise}
@@ -103,7 +105,8 @@ class GetSMSCodeClient {
     const {
       service,
       pid = projects.serviceToPID[service.toLowerCase()],
-      cocode
+      cocode,
+      mobile,
     } = opts
 
     if (!pid) throw new Error(`unrecognized service "${service}"`)
@@ -112,7 +115,7 @@ class GetSMSCodeClient {
       if (cocode && !countryCodes.has(cocode)) throw new Error(`invalid cocode "${cocode}"`)
     }
 
-    const result = await this._request('getmobile', { pid, cocode })
+    const result = await this._request('getmobile', { pid, cocode, mobile })
 
     if (result.indexOf('|') >= 0) {
       throw new Error(result)
@@ -143,10 +146,11 @@ class GetSMSCodeClient {
    * You must specify either `opts.service` or `opts.pid`.
    *
    * @param {object} opts - Config options
-   * @param {string} opts.number - Mobile number to blacklist
-   * @param {string} [opts.service] - Name of service to blacklist number
-   * @param {string} [opts.pid] - Project ID of service to blacklist number
+   * @param {string} opts.number - Mobile number to get SMS
+   * @param {string} [opts.service] - Name of service to get SMS
+   * @param {string} [opts.pid] - Project ID of service to get SMS
    * @param {string} [opts.cocode] - Country code (required if using asian domain)
+   * @param {string} [opts.author] - Author email
 
    * @return {Promise}
    */
@@ -155,7 +159,8 @@ class GetSMSCodeClient {
       number,
       service,
       pid = projects.serviceToPID[service.toLowerCase()],
-      cocode
+      cocode,
+      author,
     } = opts
 
     if (!pid) throw new Error(`unrecognized service "${service}"`)
@@ -164,7 +169,7 @@ class GetSMSCodeClient {
       if (cocode && !countryCodes.has(cocode)) throw new Error(`invalid cocode "${cocode}"`)
     }
 
-    const result = await this._request('getsms', { mobile: number, pid, cocode })
+    const result = await this._request('getsms', { mobile: number, pid, cocode, author })
 
     if (result.startsWith('1|')) {
       return result.slice(2)
