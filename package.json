@@ -1,10 +1,10 @@
 {
   "name": "getsmscode",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "API client for getsmscode.com",
   "main": "index.js",
-  "repository": "transitive-bullshit/getsmscode",
-  "author": "Travis Fischer <travis@automagical.ai>",
+  "repository": "gusnips/getsmscode",
+  "author": "Travis Fischer <travis@automagical.ai>, Gustavo Salome <gustavonips@gmail.com>",
   "license": "MIT",
   "reveal": true,
   "scripts": {
