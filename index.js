@@ -32,7 +32,7 @@ const countryCodes = new Set([
   'br', // Brazil
   'eg', // Egypt
   'za', // South Africa
-  'ar', // Argentina
+  'ar' // Argentina
 ])
 
 /**
@@ -107,7 +107,7 @@ class GetSMSCodeClient {
       service,
       pid = projects.serviceToPID[service.toLowerCase()],
       cocode,
-      mobile,
+      mobile
     } = opts
 
     if (!pid) throw new Error(`unrecognized service "${service}"`)
@@ -161,7 +161,7 @@ class GetSMSCodeClient {
       service,
       pid = projects.serviceToPID[service.toLowerCase()],
       cocode,
-      author,
+      author
     } = opts
 
     if (!pid) throw new Error(`unrecognized service "${service}"`)
