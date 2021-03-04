@@ -225,7 +225,7 @@ class GetSMSCodeClient {
       qs.cocode = qs.cocode || this._cocode
     }
 
-    console.log('POST', this._url, JSON.stringify(qs, null, 2))
+    // console.log('POST', this._url, JSON.stringify(qs, null, 2))
 
     return request({
       method: 'POST',
