@@ -1,6 +1,6 @@
 {
   "name": "getsmscode2",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "API client for getsmscode.com",
   "main": "index.js",
   "repository": "gusnips/getsmscode",
