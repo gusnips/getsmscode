@@ -13,7 +13,7 @@
 This module requires `node >= 8`.
 
 ```bash
-npm install --save getsmscode
+npm install --save getsmscode2
 ```
 
 You'll need to setup a [getsmscode.com](http://www.getsmscode.com/) account and add some money to your account before using this module.
@@ -21,7 +21,7 @@ You'll need to setup a [getsmscode.com](http://www.getsmscode.com/) account and 
 ## Usage
 
 ```js
-const GetSMSCodeClient = require('getsmscode')
+const GetSMSCodeClient = require('getsmscode2')
 
 const client = new GetSMSCodeClient({
   username: '...',
