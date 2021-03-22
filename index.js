@@ -33,6 +33,7 @@ const countryCodes = new Set([
   'eg', // Egypt
   'za', // South Africa
   'uk', // United Kingdom
+  'gh', // Ghana
   'ar' // Argentina
 ])
 
