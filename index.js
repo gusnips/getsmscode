@@ -23,7 +23,8 @@ const countryCodes = new Set([
   'my', // Malaysia
   'ph', // Philippines
   'kh', // Cambodia
-  'mm', // Myanmar
+  'mm', // Myanmara
+  'mg', // Magadascar
   'vn', // Vietnam
   'id', // Indonesia
   'hk', // Hong Kong
